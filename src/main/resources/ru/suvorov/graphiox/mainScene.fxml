@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?language javascript?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.suvorov.graphiox.MainSceneController">
+    <Label fx:id="mainTitle" text="Hello world!" />
+    <Label text="This is simple demo text." />
+
+    <Button fx:id="leftButton" onAction="#buttonClickedLeft" text="Left" />
+    <Button fx:id="rightButton" onAction="#buttonClickedRight" text="right" />
+    <Button fx:id="upButton" onAction="#buttonClickedUp" text="UP" />
+    <Button fx:id="downButton" onAction="#buttonClickedDown" text="down" />
+    <Button fx:id="mainButton" onAction="#buttonClicked" text="CLick me" />
+   <Pane prefHeight="175.0" prefWidth="478.0">
+      <children>
+         <Circle fx:id="circle1" centerX="42.0" centerY="53.0" fill="DODGERBLUE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+         <Circle fx:id="circle2" centerX="96.0" centerY="88.0" fill="DODGERBLUE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+         <Line fx:id="line" endX="96.0" endY="88.0" startX="42.0" startY="53.0" />
+      </children>
+   </Pane>
+</VBox>
