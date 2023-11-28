@@ -8,26 +8,25 @@ public class MathGraph {
     private ArrayList<ArrayList<Double>> matrix = new ArrayList<>();
 
     public MathGraph() {
-
     }
 
     public MathGraph(String str) throws Exception { //todo обработать ошибки
-
+        if (isList(str)) {
+            str = convertToMatrix(str);
+        }
 
         Scanner scanner = new Scanner(str);
         int length;
 
-
         length = scanner.nextInt();
-
 
         for (int i = 0; i < length; i++) {
             matrix.add(new ArrayList<>());
             for (int j = 0; j < length; j++) {
-                matrix.get(i).add(scanner.nextDouble());
+                double d = scanner.nextDouble();
+                matrix.get(i).add(d);
             }
         }
-
 
     }
 
@@ -101,27 +100,29 @@ public class MathGraph {
             int a = scanner.nextInt() - 1;
             int b = scanner.nextInt() - 1;
             double c = scanner.nextDouble();
-            System.out.println(c);
             newmatrix[a][b] = c;
             newmatrix[b][a] = c;
         }
 
-        String str = String.format("%d",length);
+        String str = String.format("%d", length);
 
         for (int i = 0; i < length; i++) {
             str += "\n";
             for (int j = 0; j < length; j++) {
-                if(newmatrix[i][j] == null) {
-                    str += 0.0 + " ";
-                } else{
-                    str += newmatrix[i][j] + " ";
+                if (newmatrix[i][j] == null) {
+                    str += 0 + " ";
+                } else {
+                    str += String.format("%.2f ", newmatrix[i][j]);
                 }
             }
         }
         return str;
     }
 
-    private boolean isList(String str) {
+    private boolean isList(String string) {
+        Scanner scanner = new Scanner(string);
+        scanner.nextInt();
+        if (scanner.nextInt() == 0) return false;
         return true;
     }
 
@@ -136,7 +137,6 @@ public class MathGraph {
             }
 
         }
-
         return str + matrixStr;
     }
 }
