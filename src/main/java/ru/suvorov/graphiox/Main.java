@@ -9,14 +9,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 
 public class Main extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
         stage.setTitle("GraphIOX");
-        stage.setWidth(600);
-        stage.setHeight(400);
+        stage.setWidth(1000);
+        stage.setHeight(600);
 
         InputStream iconStream = getClass().getResourceAsStream("icon.png");
         Image image = new Image(iconStream);

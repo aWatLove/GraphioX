@@ -3,55 +3,35 @@ package ru.suvorov.graphiox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 
 public class MainSceneController {
     @FXML
-    private Button mainButton;
-    @FXML
-    private Button leftButton;
-    @FXML
-    private Button rightButton;
-    @FXML
-    private Button upButton;
-    @FXML
-    private Button downButton;
+    private Button addButton;
 
     @FXML
-    private Circle circle1;
+    private Pane pane;
+
+    private int centerPane = 255;
+
+    public MainSceneController() {}
 
     @FXML
-    private Circle circle2;
+    private void addButtonClicked() {
+        Circle circle = new Circle(5); //todo запоминать Circle гдето храня их
+                                            // todo понять как отрисовывать на окружности
+                                            // todo отрисовывать заново при добавлении новой вершины
 
-    @FXML
-    private Line line;
 
-    public MainSceneController() {
-    }
+        pane.getChildren().addAll(circle);
+        centerPane+=10;
+        circle.setCenterX(centerPane);
+        circle.setCenterY(centerPane);
+        pane.requestLayout();
 
-    @FXML
-    private void buttonClicked() {
-        mainButton.setText("Click me again!");
-    }
-
-    public void buttonClickedLeft() {
-        circle1.setCenterX((circle1.getCenterX() - 5));
-        line.setStartX(circle1.getCenterX());
-    }
-
-    public void buttonClickedRight() {
-        circle1.setCenterX(circle1.getCenterX() + 5);
-        line.setStartX(circle1.getCenterX());
-    }
-
-    public void buttonClickedUp() {
-        circle1.setCenterY(circle1.getCenterY() - 5);
-        line.setStartY(circle1.getCenterY());
-    }
-
-    public void buttonClickedDown() {
-        circle1.setCenterY(circle1.getCenterY() + 5);
-        line.setStartY(circle1.getCenterY());
     }
 }
