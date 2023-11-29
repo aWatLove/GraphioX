@@ -29,6 +29,10 @@ public class MathGraph {
 
     }
 
+    public ArrayList<ArrayList<Double>> getMatrix() { //todo сделать безопасно
+        return matrix;
+    }
+
     public void addVertex() {
         matrix.add(new ArrayList<>());
         for (int i = 0; i < matrix.size(); i++) {
