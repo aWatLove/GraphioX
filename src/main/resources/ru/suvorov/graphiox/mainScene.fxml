@@ -25,10 +25,10 @@
 <HBox prefHeight="500.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.suvorov.graphiox.MainSceneController">
    <VBox prefHeight="500.0" prefWidth="256.0">
       <children>
-              <Label fx:id="mainTitle" text="Hello world!" />
-              <Label text="This is simple demo text." />
                 <Button fx:id="addButton" onAction="#addButtonClicked" text="ADD" />
+                    <Button id="button" fx:id="button" mnemonicParsing="false" onAction="#selectFile" text="Выбор файла" />
       </children>
    </VBox>
    <Pane fx:id="pane" prefHeight="500.0" prefWidth="500.0" />
+<!--    <Pane fx:id="label" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />-->
 </HBox>

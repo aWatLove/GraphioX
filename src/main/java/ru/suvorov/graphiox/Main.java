@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class Main extends Application {
+    public static Stage mainStage;
+
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("GraphIOX");
