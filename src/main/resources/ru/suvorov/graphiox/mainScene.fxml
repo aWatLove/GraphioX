@@ -3,7 +3,6 @@
 <?language javascript?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
 
 <!--<VBox fx:id="vbox" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"-->
 <!--      fx:controller="ru.suvorov.graphiox.MainSceneController">-->
@@ -43,9 +42,6 @@
          </AnchorPane>
       </children>
    </AnchorPane>
-   <Pane fx:id="pane" prefHeight="500.0" prefWidth="500.0">
-      <children>
-         <Line endX="100.0" layoutX="177.0" layoutY="212.0" startX="-100.0" />
-      </children></Pane>
+   <Pane fx:id="pane" prefHeight="500.0" prefWidth="500.0" />
 <!--    <Pane fx:id="label" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />-->
 </HBox>

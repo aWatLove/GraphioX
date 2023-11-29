@@ -53,7 +53,7 @@ public class MainSceneController implements Initializable {
 
     private final int centerPane = 255;
     private int counter = 0;
-    private int radius = 75;
+    private int radius = 100;
 
     public MainSceneController() {
     }
