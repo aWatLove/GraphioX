@@ -35,23 +35,30 @@ public class MainSceneController implements Initializable {
 
     @FXML
     private void addButtonClicked() {
-        int newCenter = centerPane;
         counter++;
 
         int step = 360/counter;
-//        System.out.println(Math.sin(step * 180/Math.PI));
         pane.getChildren().clear();
 
-        if(counter%6 == 0){
+        if(counter%6 == 0 && radius < 200){
             radius+=25;
         }
 
         for (int i = 0; i < counter; i++) {
+            double cosX = Math.cos(step * Math.PI/180 * (i));
+            double sinY = Math.sin(step * Math.PI/180 * (i));
+
+            // Добавление номера вершины
+            Label label = new Label(String.format("%d",i+1));
+            pane.getChildren().addAll(label);
+            label.setLayoutX(centerPane - 7 + (radius + 20) *  cosX);
+            label.setLayoutY(centerPane - 7 + (radius + 20) * sinY);
+
+            // Добавление вершины
             Circle circle = new Circle(5);
             pane.getChildren().addAll(circle);
-//            newCenter += 10;
-            circle.setCenterX(newCenter + radius * Math.cos(step * Math.PI/180 * (i)) ); //X
-            circle.setCenterY(newCenter + radius * Math.sin(step * Math.PI/180 * (i)) ); //Y
+            circle.setCenterX(centerPane + radius *  cosX); //X
+            circle.setCenterY(centerPane + radius *  sinY); //Y
         }
 
         pane.requestLayout();
