@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-import static javafx.scene.paint.Color.WHITE;
 
 public class MainSceneController implements Initializable {
     private MathGraph mathGraph;
@@ -64,8 +63,37 @@ public class MainSceneController implements Initializable {
             mathGraph = new MathGraph();
         }
         mathGraph.addVertex();
-        circles = new ArrayList<>();
         counter++;
+
+        renderAll();
+    }
+
+    private void renderEdges() {
+        for (int i = 0; i < mathGraph.getMatrix().size(); i++) {
+            for (int j = 0; j < mathGraph.getMatrix().size(); j++) {
+                if (mathGraph.getMatrix().get(i).get(j) != 0) {
+                    Line line = new Line(circles.get(i).getCenterX(), circles.get(i).getCenterY(), circles.get(j).getCenterX(), circles.get(j).getCenterY());
+                    Label label = new Label(String.format("%.2f", mathGraph.getMatrix().get(i).get(j)));
+                    pane.getChildren().add(line);
+                    pane.getChildren().add(label);
+
+                    double xCordLabel = Math.abs(circles.get(i).getCenterX() - circles.get(j).getCenterX()) / 2;
+                    xCordLabel = Math.min(circles.get(i).getCenterX(), circles.get(j).getCenterX()) + xCordLabel;
+                    double yCordLabel = Math.abs(circles.get(i).getCenterY() - circles.get(j).getCenterY()) / 2;
+                    yCordLabel = Math.min(circles.get(i).getCenterY(), circles.get(j).getCenterY()) + yCordLabel;
+
+                    label.setLayoutX(xCordLabel - 10);
+                    label.setLayoutY(yCordLabel - 10);
+
+                    label.setBackground(Background.fill(Paint.valueOf("#ffffff")));
+                    pane.requestLayout();
+                }
+            }
+        }
+    }
+
+    public void renderAll() {
+        circles = new ArrayList<>();
 
         int step = 360 / counter;
         pane.getChildren().clear();
@@ -94,31 +122,6 @@ public class MainSceneController implements Initializable {
         }
         renderEdges();
     }
-
-    private void renderEdges() {
-        for (int i = 0; i < mathGraph.getMatrix().size(); i++) {
-            for (int j = 0; j < mathGraph.getMatrix().size(); j++) {
-                if (mathGraph.getMatrix().get(i).get(j) != 0) {
-                    Line line = new Line(circles.get(i).getCenterX(), circles.get(i).getCenterY(), circles.get(j).getCenterX(), circles.get(j).getCenterY());
-                    Label label = new Label(String.format("%.2f", mathGraph.getMatrix().get(i).get(j)));
-                    pane.getChildren().add(line);
-                    pane.getChildren().add(label);
-
-                    double xCordLabel = Math.abs(circles.get(i).getCenterX() - circles.get(j).getCenterX()) / 2;
-                    xCordLabel = Math.min(circles.get(i).getCenterX(), circles.get(j).getCenterX()) + xCordLabel;
-                    double yCordLabel = Math.abs(circles.get(i).getCenterY() - circles.get(j).getCenterY()) / 2;
-                    yCordLabel = Math.min(circles.get(i).getCenterY(), circles.get(j).getCenterY()) + yCordLabel;
-
-                    label.setLayoutX(xCordLabel - 10);
-                    label.setLayoutY(yCordLabel - 10);
-
-                    label.setBackground(Background.fill(Paint.valueOf("#ffffff")));
-                    pane.requestLayout();
-                }
-            }
-        }
-    }
-
     // open file
     @FXML
     private void selectFile(ActionEvent event) throws Exception {
@@ -136,6 +139,8 @@ public class MainSceneController implements Initializable {
             }
             mathGraph = new MathGraph(fileText);
 
+            counter = mathGraph.getVertexCount();
+            renderAll();
             System.out.println(fileText);
 
         }
@@ -190,7 +195,7 @@ public class MainSceneController implements Initializable {
     public void clearGraph(ActionEvent actionEvent) {
         pane.getChildren().clear();
         counter = 0;
-        radius = 50;
+        radius = 100;
         circles = new ArrayList<>(); //todo
         mathGraph = null;
     }

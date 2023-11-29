@@ -125,7 +125,12 @@ public class MathGraph {
     private boolean isList(String string) {
         Scanner scanner = new Scanner(string);
         scanner.nextInt();
-        if (scanner.nextInt() == 0) return false;
+        try {
+            if (scanner.nextInt() == 0) return false;
+        } catch (RuntimeException e){
+            return false;
+        }
+//        if (scanner.nextInt() == 0) return false;
         return true;
     }
 
@@ -136,7 +141,11 @@ public class MathGraph {
         for (int i = 0; i < matrix.size(); i++) {
             matrixStr += "\n";
             for (int j = 0; j < matrix.size(); j++) {
-                matrixStr += matrix.get(i).get(j) + " ";
+                if(matrix.get(i).get(j) == 0){
+                    matrixStr += String.format("0 ",matrix.get(i).get(j));
+                } else{
+                    matrixStr += String.format("%.2f ",matrix.get(i).get(j));
+                }
             }
 
         }
