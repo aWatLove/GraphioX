@@ -15,6 +15,8 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -70,7 +72,7 @@ public class MainSceneController implements Initializable {
         System.out.println("You clicked me!");
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Загрузить граф");
-        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Текстовые файлы", "*.txt");
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Файлы txt (*.txt)", "*.txt");
         fileChooser.getExtensionFilters().add(filter);
         File file = fileChooser.showOpenDialog(Main.mainStage);
         if (file != null) {
@@ -79,13 +81,43 @@ public class MainSceneController implements Initializable {
             while (sc.hasNext()) {
                 fileText += sc.nextLine() + "\n";
             }
-            System.out.println(fileText);
+            System.out.println(fileText); //todo инициализация графа
 
         }
     }
+
+    public void saveFile() {
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter for text files
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Файлы txt (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        //Show save file dialog
+        File file = fileChooser.showSaveDialog(Main.mainStage);
+
+        if (file != null) {
+            saveTextToFile("какой то текст", file); //todo сохранение графа .toString()
+        }
+    }
+
+    private void saveTextToFile(String content, File file) {
+        try {
+            PrintWriter writer;
+            writer = new PrintWriter(file);
+            writer.println(content);
+            writer.close();
+        } catch (IOException ex) {
+//            Logger.getLogger(SaveFileWithFileChooser.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("File dont save");
+        }
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //todo
     }
+
+
 }

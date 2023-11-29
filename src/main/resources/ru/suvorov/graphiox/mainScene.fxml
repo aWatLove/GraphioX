@@ -25,7 +25,8 @@
 <HBox prefHeight="500.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.suvorov.graphiox.MainSceneController">
    <VBox prefHeight="500.0" prefWidth="256.0">
       <children>
-          <Button id="button" fx:id="button" mnemonicParsing="false" onAction="#selectFile" text="Выбор файла" />
+          <Button id="button" fx:id="buttonOpen" mnemonicParsing="false" onAction="#selectFile" text="Выбор файла" />
+          <Button id="button" fx:id="buttonSave" mnemonicParsing="false" onAction="#saveFile" text="Сохранить граф" />
           <Button fx:id="addButton" onAction="#addButtonClicked" text="Добавить вершину" />
       </children>
    </VBox>
