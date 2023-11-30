@@ -9,7 +9,7 @@ public class MathGraph {
     public MathGraph() {
     }
 
-    public MathGraph(String str) throws Exception { //todo обработать ошибки
+    public MathGraph(String str) throws Exception {
         if (isList(str)) {
             str = convertToMatrix(str);
         }
@@ -41,7 +41,7 @@ public class MathGraph {
         }
     }
 
-    public void deleteVertex(int vertex) { //todo обработать ошибки
+    public void deleteVertex(int vertex) {
         matrix.remove(vertex - 1);
         for (int i = 0; i < matrix.size(); i++) {
             matrix.get(i).remove(vertex - 1);
@@ -126,11 +126,11 @@ public class MathGraph {
         Scanner scanner = new Scanner(string);
         scanner.nextInt();
         try {
+            if (!scanner.hasNext()) return true;
             if (scanner.nextInt() == 0) return false;
         } catch (RuntimeException e){
             return false;
         }
-//        if (scanner.nextInt() == 0) return false;
         return true;
     }
 

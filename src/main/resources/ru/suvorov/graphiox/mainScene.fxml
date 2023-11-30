@@ -3,45 +3,36 @@
 <?language javascript?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<!--<VBox fx:id="vbox" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"-->
-<!--      fx:controller="ru.suvorov.graphiox.MainSceneController">-->
-<!--    <Label fx:id="mainTitle" text="Hello world!" />-->
-<!--    <Label text="This is simple demo text." />-->
-<!--    <Button fx:id="leftButton" onAction="#buttonClickedLeft" text="Left" />-->
-<!--    <Button fx:id="rightButton" onAction="#buttonClickedRight" text="right" />-->
-<!--    <Button fx:id="upButton" onAction="#buttonClickedUp" text="UP" />-->
-<!--    <Button fx:id="downButton" onAction="#buttonClickedDown" text="down" />-->
-<!--    <Button fx:id="mainButton" onAction="#buttonClicked" text="CLick me" />-->
-<!--   <Pane prefHeight="175.0" prefWidth="478.0">-->
-<!--      <children>-->
-<!--         <Circle fx:id="circle1" centerX="42.0" centerY="53.0" fill="DODGERBLUE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />-->
-<!--         <Circle fx:id="circle2" centerX="96.0" centerY="88.0" fill="DODGERBLUE" radius="5.0" stroke="BLACK" strokeType="INSIDE" />-->
-<!--         <Line fx:id="line" endX="96.0" endY="88.0" startX="42.0" startY="53.0" />-->
-<!--      </children>-->
-<!--   </Pane>-->
-<!--</VBox>-->
+<?import javafx.scene.text.*?>
 
 <HBox prefHeight="500.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.suvorov.graphiox.MainSceneController">
    <AnchorPane prefHeight="500.0" prefWidth="256.0">
       <children>
           <Button id="button" fx:id="buttonOpen" layoutX="14.0" layoutY="1.0" mnemonicParsing="false" onAction="#selectFile" text="Выбор файла" />
           <Button id="button" fx:id="buttonSave" layoutX="120.0" layoutY="1.0" mnemonicParsing="false" onAction="#saveFile" text="Сохранить граф" />
-          <Button fx:id="addButton" layoutX="14.0" layoutY="84.0" onAction="#addButtonClicked" text="Добавить вершину" />
+          <Button fx:id="addButton" layoutX="48.0" layoutY="84.0" onAction="#addButtonClicked" text="Добавить вершину" />
           <Button id="button" fx:id="buttonClear" layoutX="14.0" layoutY="43.0" mnemonicParsing="false" onAction="#clearGraph" text="Очистить" />
-         <AnchorPane layoutX="1.0" layoutY="129.0" prefHeight="110.0" prefWidth="257.0">
+         <Button layoutX="48.0" layoutY="123.0" mnemonicParsing="false" onAction="#deleteVertex" prefHeight="26.0" prefWidth="122.0" text="Удалить вершину" />
+         <TextField fx:id="deleteVertexNum" layoutX="3.0" layoutY="123.0" prefHeight="26.0" prefWidth="38.0" />
+
+         <AnchorPane layoutX="1.0" layoutY="158.0" prefHeight="137.0" prefWidth="258.0">
             <children>
-               <Button id="button" fx:id="buttonAddEdge" layoutX="107.0" layoutY="15.0" mnemonicParsing="false" onAction="#selectAddEdge" prefHeight="26.0" prefWidth="126.0" text="Добавить ребро" />
-               <TextField fx:id="vertex1" layoutX="1.0" layoutY="3.0" prefHeight="26.0" prefWidth="38.0" />
-               <TextField fx:id="vertex2" layoutX="1.0" layoutY="29.0" prefHeight="26.0" prefWidth="38.0" />
-               <Label layoutX="44.0" layoutY="19.0" prefHeight="18.0" prefWidth="57.0" text="Вершины" />
-               <TextField fx:id="weight" layoutX="1.0" layoutY="60.0" prefHeight="26.0" prefWidth="38.0" />
-               <Label layoutX="44.0" layoutY="64.0" text="Вес" />
-               <Label fx:id="exceptionLabelAddEdge" layoutX="118.0" layoutY="46.0" text="Введите вершины!" textFill="RED" visible="false" />
+               <Label fx:id="exceptionLabelAddEdge" layoutX="86.0" layoutY="116.0" prefHeight="18.0" prefWidth="163.0" text="Введите вершины!" textFill="RED" visible="false" />
+               <Button id="button" fx:id="buttonAddEdge" layoutX="130.0" layoutY="53.0" mnemonicParsing="false" onAction="#selectAddEdge" prefHeight="26.0" prefWidth="78.0" text="Добавить" />
+               <Button layoutX="130.0" layoutY="85.0" mnemonicParsing="false" onAction="#deleteEdge" prefHeight="26.0" prefWidth="78.0" text="Удалить" />
+               <TextField fx:id="vertex1" layoutY="41.0" prefHeight="26.0" prefWidth="38.0" />
+               <TextField fx:id="vertex2" layoutY="67.0" prefHeight="26.0" prefWidth="38.0" />
+               <Label layoutX="43.0" layoutY="57.0" prefHeight="18.0" prefWidth="57.0" text="Вершины" />
+               <TextField fx:id="weight" layoutY="98.0" prefHeight="26.0" prefWidth="38.0" />
+               <Label layoutX="43.0" layoutY="102.0" text="Вес" />
+               <Label layoutX="104.0" layoutY="14.0" text="Ребро" underline="true">
+                  <font>
+                     <Font name="System Italic" size="14.0" />
+                  </font>
+               </Label>
             </children>
          </AnchorPane>
       </children>
    </AnchorPane>
    <Pane fx:id="pane" prefHeight="500.0" prefWidth="500.0" />
-<!--    <Pane fx:id="label" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />-->
 </HBox>

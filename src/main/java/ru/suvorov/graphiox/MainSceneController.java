@@ -3,23 +3,16 @@ package ru.suvorov.graphiox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.FileChooser;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
@@ -29,12 +22,6 @@ import java.util.Scanner;
 
 
 public class MainSceneController implements Initializable {
-    private MathGraph mathGraph;
-    private ArrayList<Circle> circles;
-
-    @FXML
-    private Button addButton;
-
     @FXML
     private Label exceptionLabelAddEdge;
 
@@ -48,8 +35,13 @@ public class MainSceneController implements Initializable {
     private TextField weight;
 
     @FXML
+    private TextField deleteVertexNum;
+
+    @FXML
     private Pane pane;
 
+    private MathGraph mathGraph;
+    private ArrayList<Circle> circles;
     private final int centerPane = 255;
     private int counter = 0;
     private int radius = 100;
@@ -125,7 +117,6 @@ public class MainSceneController implements Initializable {
     // open file
     @FXML
     private void selectFile(ActionEvent event) throws Exception {
-//        System.out.println("You clicked me!");
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Загрузить граф");
         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Файлы txt (*.txt)", "*.txt");
@@ -142,7 +133,6 @@ public class MainSceneController implements Initializable {
             counter = mathGraph.getVertexCount();
             renderAll();
             System.out.println(fileText);
-
         }
     }
 
@@ -155,13 +145,9 @@ public class MainSceneController implements Initializable {
         FileChooser.ExtensionFilter extListFilter = new FileChooser.ExtensionFilter("Лист смежности (*.txt)", "*.txt");
         fileChooser.getExtensionFilters().add(extListFilter);
 
-
         //Show save file dialog
         File file = fileChooser.showSaveDialog(Main.mainStage);
-        if (fileChooser.getSelectedExtensionFilter() == extListFilter) {
 
-
-        }
         if (file != null) {
             if (mathGraph != null)
                 if (fileChooser.getSelectedExtensionFilter() == extListFilter)
@@ -180,7 +166,6 @@ public class MainSceneController implements Initializable {
             writer.println(content);
             writer.close();
         } catch (IOException ex) {
-//            Logger.getLogger(SaveFileWithFileChooser.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("File dont save");
         }
     }
@@ -196,7 +181,7 @@ public class MainSceneController implements Initializable {
         pane.getChildren().clear();
         counter = 0;
         radius = 100;
-        circles = new ArrayList<>(); //todo
+        circles = new ArrayList<>();
         mathGraph = null;
     }
 
@@ -224,7 +209,6 @@ public class MainSceneController implements Initializable {
             exceptionLabelAddEdge.setVisible(false);
 
             renderEdges();
-            System.out.println(mathGraph);
         }
 
 
@@ -245,6 +229,45 @@ public class MainSceneController implements Initializable {
             return true;
         } catch (NumberFormatException e) {
             return false;
+        }
+    }
+
+    public void deleteVertex() {
+        if(validateVertex(deleteVertexNum.getText())){
+            mathGraph.deleteVertex(Integer.parseInt(deleteVertexNum.getText()));
+            counter--;
+            renderAll();
+        }
+    }
+
+
+    public void deleteEdge() {
+        if (mathGraph == null) {
+            exceptionLabelAddEdge.setText("Нет вершин");
+            exceptionLabelAddEdge.setVisible(true);
+            return;
+        } else if (mathGraph.getVertexCount() < 2) {
+            exceptionLabelAddEdge.setText("Вершин меньше 2");
+            exceptionLabelAddEdge.setVisible(true);
+            return;
+        }
+        if (validateVertex(vertex1.getText()) && validateVertex(vertex2.getText())) {
+            if (vertex1.getText().equals(vertex2.getText())) {
+                exceptionLabelAddEdge.setText("Невозможно удалить ребро");
+                exceptionLabelAddEdge.setVisible(true);
+                return;
+            }
+            if (mathGraph.isaAdjacentEdges(Integer.parseInt(vertex1.getText()), Integer.parseInt(vertex2.getText()))) {
+                mathGraph.deleteEdge(Integer.parseInt(vertex1.getText()), Integer.parseInt(vertex2.getText()));
+            } else {
+                exceptionLabelAddEdge.setText("Ребра не существует");
+                exceptionLabelAddEdge.setVisible(true);
+                return;
+            }
+
+            exceptionLabelAddEdge.setVisible(false);
+
+            renderAll();
         }
     }
 }
