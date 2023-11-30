@@ -344,7 +344,7 @@ public class MainSceneController implements Initializable {
     }
 
     public void paintGraph() {
-        if (mathGraph != null) {
+        if (mathGraph != null && !colorCountText.getText().isEmpty()) {
             int colors = Integer.parseInt(colorCountText.getText());
             paintGraph(colors);
         }
