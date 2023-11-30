@@ -1,10 +1,11 @@
 package ru.suvorov.graphiox;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MathGraph {
-    private ArrayList<ArrayList<Double>> matrix = new ArrayList<>();
+    private List<List<Double>> matrix = new ArrayList<>();
 
     public MathGraph() {
     }
@@ -29,7 +30,7 @@ public class MathGraph {
 
     }
 
-    public ArrayList<ArrayList<Double>> getMatrix() { //todo сделать безопасно
+    public List<List<Double>> getMatrix() { //todo сделать безопасно
         return matrix;
     }
 

@@ -32,6 +32,15 @@
                </Label>
             </children>
          </AnchorPane>
+         <TextField fx:id="colorCountText" layoutX="105.0" layoutY="341.0" prefHeight="26.0" prefWidth="38.0" />
+         <Label layoutX="98.0" layoutY="308.0" text="Раскраска" underline="true">
+            <font>
+               <Font name="System Italic" size="14.0" />
+            </font>
+         </Label>
+         <Label layoutX="8.0" layoutY="346.0" text="Кол-во цветов" />
+         <Label fx:id="resultPaintExec" layoutX="106.0" layoutY="412.0" text="Label" />
+         <Button layoutX="9.0" layoutY="376.0" mnemonicParsing="false" onAction="#paintGraph" prefHeight="26.0" prefWidth="78.0" text="Раскрасить" />
       </children>
    </AnchorPane>
    <Pane fx:id="pane" prefHeight="500.0" prefWidth="500.0" />
