@@ -337,7 +337,16 @@ public class MainSceneController implements Initializable {
                 return Color.GREEN;
             case 3:
                 return Color.BLUE;
-            // Add more colors as needed
+            case 4:
+                return Color.BROWN;
+            case 5:
+                return Color.CORAL;
+            case 6:
+                return Color.GOLD;
+            case 7:
+                return Color.GRAY;
+            case 8:
+                return Color.YELLOW;
             default:
                 return Color.BLACK;
         }
@@ -372,8 +381,18 @@ public class MainSceneController implements Initializable {
             return 2;
         } else if (fill.equals(Color.BLUE)) {
             return 3;
+        }else if (fill.equals(Color.BROWN)) {
+            return 4;
+        } else if (fill.equals(Color.CORAL)) {
+            return 5;
+        }else if (fill.equals(Color.GOLD)) {
+            return 6;
+        } else if (fill.equals(Color.GRAY)) {
+            return 7;
+        } else if (fill.equals(Color.YELLOW)) {
+            return 7;
         }
-        // Добавьте соответствующие числа для других цветов, если нужно
+        // Добавить для других цветов..
         return 0; // Возвращаем 0 для неопределённых цветов
     }
 }
